@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import Data from './Data.json'
+import List from './Components/List'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      Database: Data,
+      Datalist: Data
+    }
+    this.IsActive = this.IsActive.bind(this)
+    this.InActive = this.InActive.bind(this)
+  }
+  IsActive() {
+    this.setState(prevstate => {
+      const MainData = prevstate.Database.filter((item) => item.isActive === true)
+
+      return {
+        Datalist: MainData
+      }
+    })
+  }
+  InActive() {
+    this.setState(prevstate => {
+      const MainData = prevstate.Database.filter((item) => item.isActive === false)
+
+      return {
+        Datalist: MainData
+      }
+    })
+  }
+  render() {
+    let listCompo = this.state.Datalist.map((item) => <List _key={item.id} item={item} />);
+
+    return (
+      <div>
+        <button onClick={this.IsActive}>IsActive</button>
+        <button onClick={this.InActive}> InActive</button>
+        {listCompo}
+      </div>
+    );
+  }
 }
 
 export default App;
