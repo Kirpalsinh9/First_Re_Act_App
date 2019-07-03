@@ -4,6 +4,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ### `npm start`
 
 To start the app.
-This is just basic react app that shows some json data that stored locally in js file according to the state of the component.
+This is just basic react app that shows some json data that stored locally in json file according to the state of the component.
 
 
